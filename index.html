@@ -145,152 +145,6 @@
       }
     }
 
-    /* ══════ MUSIC PLAYER ══════ */
-    #music-player {
-      position: fixed;
-      bottom: 16px;
-      right: 12px;
-      z-index: 5000;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      display: none;
-    }
-
-    #yt-player-wrap {
-      width: 220px;
-      height: 124px;
-      overflow: hidden;
-      position: fixed;
-      left: -9999px;
-      top: -9999px;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .mp-bar {
-      background: rgba(0, 12, 28, .95);
-      border: 1px solid rgba(255, 215, 0, .35);
-      border-radius: 50px;
-      padding: 9px 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, .6), 0 0 20px rgba(255, 107, 157, .12);
-      min-width: clamp(170px, 45vw, 240px);
-      max-width: 260px;
-    }
-
-    .mp-btn {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      border: 1.5px solid var(--gold);
-      background: transparent;
-      color: var(--gold);
-      font-size: .95rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all .3s;
-      flex-shrink: 0;
-    }
-
-    .mp-btn:hover,
-    .mp-btn:active {
-      background: var(--gold);
-      color: #000;
-    }
-
-    .mp-info {
-      flex: 1;
-      overflow: hidden;
-      min-width: 0;
-    }
-
-    .mp-title {
-      font-family: 'Dancing Script', cursive;
-      font-size: .82rem;
-      color: rgba(255, 255, 255, .92);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .mp-artist {
-      font-size: .65rem;
-      color: rgba(255, 215, 0, .6);
-      letter-spacing: 1px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .mp-wave {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      margin-top: 3px;
-    }
-
-    .mp-bar-wave {
-      width: 3px;
-      border-radius: 2px;
-      background: var(--rose);
-      animation: wave var(--s) ease-in-out infinite;
-      animation-delay: var(--dl2);
-    }
-
-    @keyframes wave {
-
-      0%,
-      100% {
-        height: 3px
-      }
-
-      50% {
-        height: 11px
-      }
-    }
-
-    .mp-wave.paused .mp-bar-wave {
-      animation-play-state: paused;
-    }
-
-    .mp-prev,
-    .mp-next {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 215, 0, .35);
-      background: transparent;
-      color: rgba(255, 215, 0, .7);
-      font-size: .7rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all .3s;
-      flex-shrink: 0;
-    }
-
-    .mp-prev:hover,
-    .mp-prev:active,
-    .mp-next:hover,
-    .mp-next:active {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    .mp-track-num {
-      font-size: .6rem;
-      color: rgba(255, 255, 255, .28);
-      letter-spacing: 1px;
-      text-align: right;
-    }
 
     /* ══════ CUTE COUPLE IMAGES ══════ */
     #couple-images {
@@ -1709,9 +1563,6 @@
       }
 
       /* reason cards stack naturally on mobile */
-      .mp-bar {
-        min-width: 160px;
-      }
 
     }
 
@@ -1720,10 +1571,6 @@
         font-size: 3.3rem;
       }
 
-      .mp-bar {
-        padding: 8px 12px;
-        gap: 7px;
-      }
     }
   </style>
 </head>
@@ -1733,32 +1580,6 @@
   <canvas id="galaxy"></canvas>
   <div id="stars"></div>
   <div id="floaters"></div>
-
-  <!-- ══════ YOUTUBE HIDDEN PLAYER ══════ -->
-  <div id="yt-player-wrap">
-    <div id="yt-player"></div>
-  </div>
-
-  <!-- ══════ MUSIC PLAYER ══════ -->
-  <div id="music-player">
-    <div class="mp-bar">
-      <button class="mp-prev" onclick="prevTrack()" title="Previous">&#9664;&#9664;</button>
-      <button class="mp-btn" id="mp-play-btn" onclick="togglePlay()">▶</button>
-      <div class="mp-info">
-        <div class="mp-title" id="mp-title">Loading…</div>
-        <div class="mp-artist" id="mp-artist">Love Songs</div>
-        <div class="mp-wave paused" id="mp-wave">
-          <div class="mp-bar-wave" style="--s:.6s;--dl2:0s"></div>
-          <div class="mp-bar-wave" style="--s:.8s;--dl2:.1s"></div>
-          <div class="mp-bar-wave" style="--s:.5s;--dl2:.2s"></div>
-          <div class="mp-bar-wave" style="--s:.7s;--dl2:.05s"></div>
-          <div class="mp-bar-wave" style="--s:.9s;--dl2:.15s"></div>
-        </div>
-      </div>
-      <button class="mp-next" onclick="nextTrack()" title="Next">&#9654;&#9654;</button>
-    </div>
-    <div class="mp-track-num" id="mp-track-num">1 / 8</div>
-  </div>
 
   <!-- ══════ INTRO ══════ -->
   <div id="intro">
@@ -2405,38 +2226,13 @@
     const tracks = [
       { title: "Perfect", artist: "Ed Sheeran", src: "music.mp3" }
     ];
-    let curTrack = 0, isPlaying = false;
+    let curTrack = 0;
     let userOpenedGift = false;
     let playRetryTimer = null;
     const bgMusic = new Audio(tracks[0].src);
     bgMusic.loop = true;
     bgMusic.preload = 'auto';
 
-    function updateUI(idx) {
-      const t = tracks[idx];
-      const titleEl = document.getElementById('mp-title');
-      const artistEl = document.getElementById('mp-artist');
-      const numEl = document.getElementById('mp-track-num');
-      if (titleEl) titleEl.textContent = t.title;
-      if (artistEl) artistEl.textContent = t.artist;
-      if (numEl) numEl.textContent = (idx + 1) + ' / ' + tracks.length;
-    }
-
-    bgMusic.addEventListener('play', () => {
-      isPlaying = true;
-      const playBtn = document.getElementById('mp-play-btn');
-      const wave = document.getElementById('mp-wave');
-      if (playBtn) playBtn.textContent = '⏸';
-      if (wave) wave.classList.remove('paused');
-    });
-
-    bgMusic.addEventListener('pause', () => {
-      isPlaying = false;
-      const playBtn = document.getElementById('mp-play-btn');
-      const wave = document.getElementById('mp-wave');
-      if (playBtn) playBtn.textContent = '▶';
-      if (wave) wave.classList.add('paused');
-    });
 
     function doPlay() {
       bgMusic.currentTime = 0;
@@ -2502,7 +2298,6 @@
       setTimeout(startMusicAutoplay, 800);
       setTimeout(loadAllCldImages, 300);
       startConfettiLoop();
-      updateUI(0);
     }
     let candlesBlown = 0;
     const totalCandles = 5;
@@ -2553,9 +2348,10 @@
     function startConfettiLoop() {
       if (confettiLoopStarted) return;
       confettiLoopStarted = true;
+      const confettiEvery = innerWidth <= 600 ? 7000 : 4500;
       setInterval(() => {
         makeConfetti();
-      }, 4500);
+      }, confettiEvery);
     }
 
     async function startBlowing() {
@@ -2600,7 +2396,8 @@
     /* ══════ CONFETTI ══════ */
     const cfColors = ['#FFD700', '#FF6B9D', '#c084fc', '#86efac', '#60a5fa', '#FF8C69', '#fff'];
     function makeConfetti() {
-      for (let i = 0; i < 80; i++) {
+      const pieces = innerWidth <= 600 ? 28 : 80;
+      for (let i = 0; i < pieces; i++) {
         const el = document.createElement('div'); el.className = 'cfp';
         el.style.cssText = `left:${Math.random() * 100}%;background:${cfColors[Math.floor(Math.random() * cfColors.length)]};--d:${3 + Math.random() * 4}s;--dl:${Math.random() * 3}s;--drift:${(Math.random() - .5) * 200}px;transform:rotate(${Math.random() * 360}deg);width:${5 + Math.random() * 8}px;height:${9 + Math.random() * 10}px;border-radius:${Math.random() > .5 ? '50%' : '2px'};`;
         document.body.appendChild(el);
@@ -2610,7 +2407,8 @@
 
     /* ══════ STARS ══════ */
     const sf = document.getElementById('stars');
-    for (let i = 0; i < 220; i++) {
+    const STAR_COUNT = innerWidth <= 600 ? 110 : 220;
+    for (let i = 0; i < STAR_COUNT; i++) {
       const s = document.createElement('div'); s.className = 'star';
       const sz = Math.random() * 3 + .5;
       s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;--d:${2 + Math.random() * 5}s;--dl:${Math.random() * 6}s`;
@@ -2693,7 +2491,8 @@
     }
 
     // Init galaxy particles
-    for (let i = 0; i < 320; i++)gParticles.push(new GalaxyParticle());
+    const GALAXY_PARTICLE_COUNT = innerWidth <= 600 ? 120 : 320;
+    for (let i = 0; i < GALAXY_PARTICLE_COUNT; i++)gParticles.push(new GalaxyParticle());
 
     // Milky way band
     function drawMilkyWay() {
@@ -2741,8 +2540,11 @@
       step() { this.x += this.vx; this.y += this.vy; this.vy += this.gy; this.vx *= .985; this.al -= this.dc; }
       draw() { ctx.save(); ctx.globalAlpha = this.al; ctx.fillStyle = this.col; ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2); ctx.fill(); ctx.restore(); }
     }
-    function explode(x, y, n = 85) { for (let i = 0; i < n; i++)parts.push(new Particle(x, y)); }
-    function burstFireworks() { for (let i = 0; i < 6; i++)setTimeout(() => explode(Math.random() * cvs.width, Math.random() * cvs.height * .65), i * 320); }
+    function explode(x, y, n = (innerWidth <= 600 ? 45 : 85)) { for (let i = 0; i < n; i++)parts.push(new Particle(x, y)); }
+    function burstFireworks() {
+      const burstCount = innerWidth <= 600 ? 3 : 6;
+      for (let i = 0; i < burstCount; i++)setTimeout(() => explode(Math.random() * cvs.width, Math.random() * cvs.height * .65), i * 320);
+    }
     (function loop() { requestAnimationFrame(loop); ctx.clearRect(0, 0, cvs.width, cvs.height); parts = parts.filter(p => p.al > 0); parts.forEach(p => { p.step(); p.draw(); }); })();
 
     let lastFw = 0;
